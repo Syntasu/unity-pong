@@ -6,8 +6,11 @@ namespace UnityPong
 	{
 		#region Data
 
-		private float velocity = 0.2f;
-		public Vector3 direction;
+		public float InitialVelocity;
+		public float BounceSpeedup;
+			
+		private float velocity;
+		private  Vector3 direction;
 		private Rigidbody ballBody;
 
 		#endregion
@@ -17,6 +20,7 @@ namespace UnityPong
 		private void Awake()
 		{
 			ballBody = GetComponent<Rigidbody>();
+			velocity = InitialVelocity;
 
 			ResetBall();
 		}
@@ -45,9 +49,13 @@ namespace UnityPong
 
 		private Collider lastCollider = null;
 
+		//TODO: Ball should bounce off the paddle based on the center position.
+		//TODO: Paddle should be able to transfer his velocity to the ball.
+		//TODO: Find out why OnCollisionEnter fires multiple times...
 		private void OnCollisionEnter(Collision collision)
 		{
 			//Note: What could be potential implications of ignoring last collider? What a full on corner hit (i.e. > 2 colliders)?
+			//TODO: Skipping colliders could become cumbersome if the collider is for instance circulair.....
 			//Skip the last collider, since OnCollisionEnter can trigger multiple times for the same collider.
 			if (lastCollider == collision.collider) return;
 
@@ -56,9 +64,11 @@ namespace UnityPong
 				direction = Vector3.Reflect(direction, collision.contacts[0].normal);
 				direction.y = 0.0f;
 
-				//TODO: Dont hardcode the velocity increase
-				//TODO: Dont increase velocity for walls.
-				velocity += 5.0f;
+				//TODO: Tagging system that does allow for auto-completed tags.
+				if (collision.collider.tag == "Player")
+				{
+					velocity += BounceSpeedup;
+				}
 
 				lastCollider = collision.collider;
 			}
