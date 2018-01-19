@@ -1,0 +1,33 @@
+#Synn Unity GitIgnore v1.0.0
+
+#Directories
+[Ll]ibrary
+[Bb]uild
+[Bb]uilds/
+[Pp]ackages
+[Tt]emp
+[Oo]bj/
+
+Assets/AssetStoreTools*
+ExportedObj/
+
+#Cache directories.
+.vs/
+.consulo/
+
+#Wildcard files
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.pidb.meta
+*.pdb.meta
+sysinfo.txt
+*.apk
+*.unitypackage
+
+#Specific files.
+UpgradeLog.htm
