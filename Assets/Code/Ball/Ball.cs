@@ -6,7 +6,7 @@ namespace UnityPong
 	{
 		#region Data
 
-		public float velocity = 0.2f;
+		private float velocity = 0.2f;
 		public Vector3 direction;
 		private Rigidbody ballBody;
 

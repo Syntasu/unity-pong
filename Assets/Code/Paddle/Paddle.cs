@@ -7,8 +7,8 @@ namespace UnityPong
 	{
 		#region Data
 
-		public FloatRange MovementSpeed;
-		public FloatRange MovementSmoothness;
+		public float MovementSpeed;
+		public float MovementSmoothness;
 
 		public FloatRange XRestriction;
 		public FloatRange ZRestriction;
@@ -16,7 +16,8 @@ namespace UnityPong
 		private PaddleInput paddleInput;
 		private Vector3 centerPosition;
 
-		private Vector3 movementVector = Vector3.zero;
+		private Vector3 movementFrame = Vector3.zero;
+		private Vector3 movementOffset = Vector3.zero;
 
 		#endregion
 
@@ -36,39 +37,41 @@ namespace UnityPong
 		{
 			if(paddleInput.PaddleUpPressed)
 			{
-				movementVector += transform.right;
+				movementFrame += transform.right;
 			}
 
 			if (paddleInput.PaddleDownPressed)
 			{
-				movementVector -= transform.right;
+				movementFrame -= transform.right;
 			}
 
 			if (paddleInput.PaddleForwardPressed)
 			{
-				movementVector -= transform.forward;
+				movementFrame -= transform.forward;
 			}
 
 			if (paddleInput.PaddleBackwardsPressed)
 			{
-				movementVector += transform.forward;
+				movementFrame += transform.forward;
 			}
 
-			//TODO: Seems like the restrictions get affected by movement speed.
-			XRestriction.Value = movementVector.x;
-			ZRestriction.Value = movementVector.z;
+			movementOffset += (movementFrame * Time.deltaTime * MovementSpeed) * 10.0f;
+			movementFrame = Vector3.zero;
+		
+			XRestriction.Value = movementOffset.x;
+			ZRestriction.Value = movementOffset.z;
 
-			movementVector = new Vector3(
+			movementOffset = new Vector3(
 				XRestriction.Value,
-				movementVector.y,
+				movementOffset.y,
 				ZRestriction.Value
 			);
 
 			//TODO: Paddle can escape if the movement speed is too high (i.e. dont multiply movementVector by speed.)
 			transform.position = Vector3.Lerp(
 				transform.position, 
-				centerPosition + (movementVector * MovementSpeed.Value), 
-				MovementSmoothness.Value * Time.deltaTime
+				centerPosition + movementOffset, 
+				MovementSmoothness * Time.deltaTime
 			);
 		}
 

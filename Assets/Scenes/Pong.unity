@@ -862,6 +862,61 @@ Prefab:
       propertyPath: MovementSpeed.value
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114896203944417798, guid: 49d9a00e9210fc541b3b98254d720ba1,
+        type: 2}
+      propertyPath: XRestriction.Min
+      value: -8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114896203944417798, guid: 49d9a00e9210fc541b3b98254d720ba1,
+        type: 2}
+      propertyPath: XRestriction.Max
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114896203944417798, guid: 49d9a00e9210fc541b3b98254d720ba1,
+        type: 2}
+      propertyPath: ZRestriction.Min
+      value: -19
+      objectReference: {fileID: 0}
+    - target: {fileID: 114896203944417798, guid: 49d9a00e9210fc541b3b98254d720ba1,
+        type: 2}
+      propertyPath: ZRestriction.Max
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 114896203944417798, guid: 49d9a00e9210fc541b3b98254d720ba1,
+        type: 2}
+      propertyPath: MovementSpeed.Min
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 114896203944417798, guid: 49d9a00e9210fc541b3b98254d720ba1,
+        type: 2}
+      propertyPath: MovementSpeed.Max
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114896203944417798, guid: 49d9a00e9210fc541b3b98254d720ba1,
+        type: 2}
+      propertyPath: MovementSmoothness.Min
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114896203944417798, guid: 49d9a00e9210fc541b3b98254d720ba1,
+        type: 2}
+      propertyPath: MovementSmoothness.Max
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114896203944417798, guid: 49d9a00e9210fc541b3b98254d720ba1,
+        type: 2}
+      propertyPath: MovementSmoothness.Random
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114896203944417798, guid: 49d9a00e9210fc541b3b98254d720ba1,
+        type: 2}
+      propertyPath: MovementSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114896203944417798, guid: 49d9a00e9210fc541b3b98254d720ba1,
+        type: 2}
+      propertyPath: MovementSmoothness
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 49d9a00e9210fc541b3b98254d720ba1, type: 2}
   m_IsPrefabParent: 0
