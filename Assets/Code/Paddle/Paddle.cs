@@ -19,6 +19,14 @@ namespace UnityPong
 		private Vector3 movementFrame = Vector3.zero;
 		private Vector3 movementOffset = Vector3.zero;
 
+		public Vector3 Direction
+		{
+			get
+			{
+				return (transform.position - lastPosition);
+			}
+		}
+
 		#endregion
 
 		#region Init
@@ -32,6 +40,8 @@ namespace UnityPong
 		#endregion
 
 		#region Logic
+
+		Vector3 lastPosition = Vector3.zero;
 
 		public void Update()
 		{
@@ -55,9 +65,17 @@ namespace UnityPong
 				movementFrame += transform.forward;
 			}
 
-			movementOffset += (movementFrame * Time.deltaTime * MovementSpeed) * 10.0f;
+			Debug.DrawLine(transform.position, transform.position + (Direction * 10));
+
+			lastPosition = transform.position;
+		}
+
+		public void FixedUpdate()
+		{
+
+			movementOffset += (movementFrame * MovementSpeed * 100.0f) * Time.fixedDeltaTime;
 			movementFrame = Vector3.zero;
-		
+
 			XRestriction.Value = movementOffset.x;
 			ZRestriction.Value = movementOffset.z;
 
@@ -69,9 +87,9 @@ namespace UnityPong
 
 			//TODO: Paddle can escape if the movement speed is too high (i.e. dont multiply movementVector by speed.)
 			transform.position = Vector3.Lerp(
-				transform.position, 
-				centerPosition + movementOffset, 
-				MovementSmoothness * Time.deltaTime
+				transform.position,
+				centerPosition + movementOffset,
+				MovementSmoothness * Time.fixedDeltaTime
 			);
 		}
 

@@ -911,7 +911,7 @@ Prefab:
     - target: {fileID: 114896203944417798, guid: 49d9a00e9210fc541b3b98254d720ba1,
         type: 2}
       propertyPath: MovementSpeed
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114896203944417798, guid: 49d9a00e9210fc541b3b98254d720ba1,
         type: 2}
@@ -1198,6 +1198,10 @@ Prefab:
       propertyPath: PaddleDownKey
       value: 115
       objectReference: {fileID: 0}
+    - target: {fileID: 1678796966470734, guid: 49d9a00e9210fc541b3b98254d720ba1, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 49d9a00e9210fc541b3b98254d720ba1, type: 2}
   m_IsPrefabParent: 0
@@ -1226,7 +1230,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4019915676082812, guid: 8f28db1042ca75d4e8523f3bdad6edc2, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0.0000087072885
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4019915676082812, guid: 8f28db1042ca75d4e8523f3bdad6edc2, type: 2}
       propertyPath: m_LocalRotation.z
@@ -1256,7 +1260,16 @@ Prefab:
     - target: {fileID: 114955948072394116, guid: 8f28db1042ca75d4e8523f3bdad6edc2,
         type: 2}
       propertyPath: BounceSpeedup
-      value: 3
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4019915676082812, guid: 8f28db1042ca75d4e8523f3bdad6edc2, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114955948072394116, guid: 8f28db1042ca75d4e8523f3bdad6edc2,
+        type: 2}
+      propertyPath: BounceSpeedupFromPaddle
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8f28db1042ca75d4e8523f3bdad6edc2, type: 2}
