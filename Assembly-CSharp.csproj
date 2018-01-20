@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Code\Ball\Ball.cs" />
+     <Compile Include="Assets\Code\Camera\CameraController.cs" />
      <Compile Include="Assets\Code\Paddle\Paddle.cs" />
      <Compile Include="Assets\Code\Paddle\PaddleInput.cs" />
      <Compile Include="Assets\Code\Utility\FloatRange.cs" />
