@@ -35,6 +35,7 @@ namespace UnityPong
 			);
 		}
 
+        //TODO: Finding bounding box should be relative to a center point.
 		private float FindBoundingBox()
 		{
 			float minX = float.MaxValue; //-55;

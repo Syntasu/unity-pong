@@ -47,22 +47,22 @@ namespace UnityPong
 		{
 			if(paddleInput.PaddleUpPressed)
 			{
-				movementFrame += transform.right;
+				movementFrame += transform.right * Time.deltaTime;
 			}
 
 			if (paddleInput.PaddleDownPressed)
 			{
-				movementFrame -= transform.right;
+				movementFrame -= transform.right * Time.deltaTime;
 			}
 
 			if (paddleInput.PaddleForwardPressed)
 			{
-				movementFrame -= transform.forward;
+				movementFrame -= transform.forward * Time.deltaTime;
 			}
 
 			if (paddleInput.PaddleBackwardsPressed)
 			{
-				movementFrame += transform.forward;
+				movementFrame += transform.forward * Time.deltaTime;
 			}
 
 			Debug.DrawLine(transform.position, transform.position + (Direction * 10));
@@ -72,9 +72,8 @@ namespace UnityPong
 
 		public void FixedUpdate()
 		{
-
-			movementOffset += (movementFrame * MovementSpeed * 100.0f) * Time.fixedDeltaTime;
-			movementFrame = Vector3.zero;
+			movementOffset += (movementFrame * MovementSpeed * 10.0f);
+		    movementFrame = Vector3.zero;
 
 			XRestriction.Value = movementOffset.x;
 			ZRestriction.Value = movementOffset.z;
@@ -85,7 +84,6 @@ namespace UnityPong
 				ZRestriction.Value
 			);
 
-			//TODO: Paddle can escape if the movement speed is too high (i.e. dont multiply movementVector by speed.)
 			transform.position = Vector3.Lerp(
 				transform.position,
 				centerPosition + movementOffset,
