@@ -32,48 +32,56 @@ namespace UnityPong
 		[SerializeField] private PaddleInputs LeftKey;
 		[SerializeField] private PaddleInputs RightKey;
 
-		private bool isInversed;
+		private bool _isInverted;
 
-		public bool PaddleLeftPressed
+		public bool LeftPressed
 		{
 			get
 			{
-				return !isInversed ?
-					Input.GetKey((KeyCode)ForwardKey) :
-					Input.GetKey((KeyCode)BackwardsKey);
-			}
-		}
-
-		public bool PaddleRightPressed
-		{
-			get
-			{
-				return !isInversed ?
-					Input.GetKey((KeyCode)BackwardsKey) :
-					Input.GetKey((KeyCode)ForwardKey);
-			}
-			
-		}
-
-		public bool PaddleBackwardsPressed
-		{
-			get
-			{
-				return !isInversed ?
+				return !_isInverted ?
 					Input.GetKey((KeyCode)LeftKey) :
 					Input.GetKey((KeyCode)RightKey);
 			}
 		}
 
-		public bool PaddleForwardPressed
+		public bool RightPressed
 		{
 			get
 			{
-				return !isInversed ?
+				return !_isInverted ?
 					Input.GetKey((KeyCode)RightKey) :
 					Input.GetKey((KeyCode)LeftKey);
 			}
+			
 		}
+
+		public bool BackwardsPressed
+		{
+			get
+			{
+				return !_isInverted ?
+					Input.GetKey((KeyCode)BackwardsKey) :
+					Input.GetKey((KeyCode)ForwardKey);
+			}
+		}
+
+		public bool ForwardsPressed
+		{
+			get
+			{
+				return !_isInverted ?
+					Input.GetKey((KeyCode)ForwardKey) :
+					Input.GetKey((KeyCode)BackwardsKey);
+			}
+		}
+
+        public bool IsInverted
+	    {
+	        get
+	        {
+	            return _isInverted;
+	        }
+	    }
 
 		#endregion
 
@@ -82,7 +90,7 @@ namespace UnityPong
 		public void Awake()
 		{
 			//Detect which side the paddle is on, used for the correct key mapping.
-			isInversed = transform.rotation.y > 0;
+			_isInverted = transform.rotation.y > 0;
 		}
 
 		#endregion

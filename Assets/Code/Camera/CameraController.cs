@@ -26,6 +26,7 @@ namespace UnityPong
 		    float fov = camera.fieldOfView;
 		    float aspect = Mathf.Clamp(camera.aspect - 0.25f, 0.14f, 3.0f);
 
+            //TODO: Factoring in FOV seems totally broken. (slighest change in FOV will create a bad result).
             float distance = Mathf.Abs((boundingBox * 2.0f) / Mathf.Tan(fov / 2.0f));
 
             transform.position = new Vector3(
@@ -38,8 +39,8 @@ namespace UnityPong
         //TODO: Finding bounding box should be relative to a center point.
 		private float FindBoundingBox()
 		{
-			float minX = float.MaxValue; //-55;
-			float maxX = float.MinValue; //
+			float minX = float.MaxValue; 
+			float maxX = float.MinValue;
 			float minZ = float.MaxValue;
 			float maxZ = float.MinValue;
 

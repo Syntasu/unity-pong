@@ -4,7 +4,7 @@ namespace UnityPong
 {
 	public class PlayingField : MonoBehaviour
 	{
-		public Transform CenterPostion;
+		public Transform CenterPosition;
 		public FloatRange DistanceFromCenter;
 
 		public Vector3 GetPosition(GameObject obj)
@@ -14,7 +14,7 @@ namespace UnityPong
 
 		public Vector3 GetPosition(Vector3 position)
 		{
-			return (position - CenterPostion.position).normalized * DistanceFromCenter.Value;
+			return (position - CenterPosition.position).normalized * DistanceFromCenter.Value;
 		}
 	}
 }
