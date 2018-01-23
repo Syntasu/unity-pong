@@ -27,30 +27,30 @@ namespace UnityPong
 	{
 		#region Data
 
-		[SerializeField] private PaddleInputs PaddleUpKey;
-		[SerializeField] private PaddleInputs PaddleDownKey;
-		[SerializeField] private PaddleInputs PaddleDownLeft;
-		[SerializeField] private PaddleInputs PaddleDownRight;
+		[SerializeField] private PaddleInputs ForwardKey;
+		[SerializeField] private PaddleInputs BackwardsKey;
+		[SerializeField] private PaddleInputs LeftKey;
+		[SerializeField] private PaddleInputs RightKey;
 
 		private bool isInversed;
 
-		public bool PaddleUpPressed
+		public bool PaddleLeftPressed
 		{
 			get
 			{
 				return !isInversed ?
-					Input.GetKey((KeyCode)PaddleUpKey) :
-					Input.GetKey((KeyCode)PaddleDownKey);
+					Input.GetKey((KeyCode)ForwardKey) :
+					Input.GetKey((KeyCode)BackwardsKey);
 			}
 		}
 
-		public bool PaddleDownPressed
+		public bool PaddleRightPressed
 		{
 			get
 			{
 				return !isInversed ?
-					Input.GetKey((KeyCode)PaddleDownKey) :
-					Input.GetKey((KeyCode)PaddleUpKey);
+					Input.GetKey((KeyCode)BackwardsKey) :
+					Input.GetKey((KeyCode)ForwardKey);
 			}
 			
 		}
@@ -60,8 +60,8 @@ namespace UnityPong
 			get
 			{
 				return !isInversed ?
-					Input.GetKey((KeyCode)PaddleDownLeft) :
-					Input.GetKey((KeyCode)PaddleDownRight);
+					Input.GetKey((KeyCode)LeftKey) :
+					Input.GetKey((KeyCode)RightKey);
 			}
 		}
 
@@ -70,8 +70,8 @@ namespace UnityPong
 			get
 			{
 				return !isInversed ?
-					Input.GetKey((KeyCode)PaddleDownRight) :
-					Input.GetKey((KeyCode)PaddleDownLeft);
+					Input.GetKey((KeyCode)RightKey) :
+					Input.GetKey((KeyCode)LeftKey);
 			}
 		}
 

@@ -45,12 +45,12 @@ namespace UnityPong
 
 		public void Update()
 		{
-			if(paddleInput.PaddleUpPressed)
+			if(paddleInput.PaddleLeftPressed)
 			{
 				movementFrame += transform.right * Time.deltaTime;
 			}
 
-			if (paddleInput.PaddleDownPressed)
+			if (paddleInput.PaddleRightPressed)
 			{
 				movementFrame -= transform.right * Time.deltaTime;
 			}
