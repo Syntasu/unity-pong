@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43688402, g: 0.48453796, b: 0.5647948, a: 1}
+  m_IndirectSpecularColor: {r: 0.43688375, g: 0.48453724, b: 0.56479526, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -88,7 +88,6 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaDirect: 0.5
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
-    m_ShowResolutionOverlay: 1
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -127,7 +126,7 @@ GameObject:
   - component: {fileID: 40956691}
   - component: {fileID: 40956690}
   m_Layer: 0
-  m_Name: Paddle1
+  m_Name: PaddleBlue
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -148,6 +147,7 @@ MonoBehaviour:
   BackwardsKey: 274
   LeftKey: 276
   RightKey: 275
+  _isInverted: 0
 --- !u!114 &40956691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,12 +166,12 @@ MonoBehaviour:
     value: 90
   Distance:
     Min: 0
-    Max: 0
+    Max: 30
     Random: 0
-    value: 0
+    value: 30
   DistanceRestriction:
-    Min: 0
-    Max: 0
+    Min: -5
+    Max: 5
     Random: 0
     value: 0
   AngleRestriction:
@@ -180,7 +180,7 @@ MonoBehaviour:
     Random: 0
     value: 0
   Center: {x: 0, y: 0, z: 0}
-  Radius: 20
+  Radius: 30
 --- !u!23 &40956692
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -315,7 +315,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 351680580}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -60.83582, y: -72.02957, z: -12.3626585}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -578,6 +578,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: 6fc1ef0213d86434e86e8c613902895d, type: 2}
+    - target: {fileID: 100000, guid: 13a700d5c1a632545a305d2b949e8a16, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9500000, guid: 13a700d5c1a632545a305d2b949e8a16, type: 3}
   m_ParentPrefab: {fileID: 100100000, guid: 13a700d5c1a632545a305d2b949e8a16, type: 3}
@@ -695,7 +699,7 @@ GameObject:
   - component: {fileID: 1449309643}
   - component: {fileID: 1449309642}
   m_Layer: 0
-  m_Name: Paddle1
+  m_Name: PaddleOrange
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -716,6 +720,7 @@ MonoBehaviour:
   BackwardsKey: 115
   LeftKey: 97
   RightKey: 100
+  _isInverted: 0
 --- !u!114 &1449309643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -734,12 +739,12 @@ MonoBehaviour:
     value: 90
   Distance:
     Min: 0
-    Max: 0
+    Max: 30
     Random: 0
-    value: 0
+    value: 30
   DistanceRestriction:
-    Min: 0
-    Max: 0
+    Min: -5
+    Max: 5
     Random: 0
     value: 0
   AngleRestriction:
@@ -748,7 +753,7 @@ MonoBehaviour:
     Random: 0
     value: 0
   Center: {x: 0, y: 0, z: 0}
-  Radius: 20
+  Radius: 30
 --- !u!23 &1449309644
 MeshRenderer:
   m_ObjectHideFlags: 0

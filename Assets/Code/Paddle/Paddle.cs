@@ -5,92 +5,86 @@ namespace UnityPong
 	[RequireComponent(typeof(PaddleInput))]
 	public class Paddle : MonoBehaviour
 	{
-		#region Data
+	    public FloatRange Angle;
+	    public FloatRange Distance;
 
-		public float MovementSpeed;
-		public float MovementSmoothness;
+	    public FloatRange DistanceRestriction;
+	    public FloatRange AngleRestriction;
 
-		public FloatRange XRestriction;
-		public FloatRange ZRestriction;
+	    public Vector3 Center;
+	    public float Radius = 30.0f;
 
-		private PaddleInput paddleInput;
-		private Vector3 centerPosition;
+	    private PlayingField playingField;
+	    private PaddleInput paddleInput;
 
-		private Vector3 movementFrame = Vector3.zero;
-		private Vector3 movementOffset = Vector3.zero;
+	    private Vector3 lastPosition;
+        public Vector3 Direction
+        {
+            get
+            {
+                return (transform.position - lastPosition);
+            }
+        }
 
-		public Vector3 Direction
-		{
-			get
-			{
-				return (transform.position - lastPosition);
-			}
-		}
+        private void Awake()
+	    {
+	        playingField = FindObjectOfType<PlayingField>();
+	        paddleInput = GetComponent<PaddleInput>();
 
-		#endregion
+            Distance.Min = Radius + DistanceRestriction.Min;
+            Distance.Max = Radius + DistanceRestriction.Max;
+            Distance.Value = Radius;
+        }
 
-		#region Init
+        private void Update()
+	    {
+	        if (paddleInput.LeftPressed && 
+                Angle.Value > AngleRestriction.Min)
+	        {
+	            Angle.Value -= 0.5f;
+	        }
 
-		public void Awake()
-		{
-			paddleInput = GetComponent<PaddleInput>();
-			centerPosition = transform.position;
-		}
+	        if (paddleInput.RightPressed &&
+                Angle.Value < AngleRestriction.Max)
+	        {
+                Angle.Value += 0.5f;
+            }
 
-		#endregion
+            if (paddleInput.ForwardsPressed &&
+                Distance.Value > Radius + DistanceRestriction.Min)
+            {
+                Distance.Value -= 0.1f;
+            }
 
-		#region Logic
+            if (paddleInput.BackwardsPressed &&
+                Distance.Value < Radius + DistanceRestriction.Max)
+            {
+                Distance.Value += 0.1f;
+            }
 
-		Vector3 lastPosition = Vector3.zero;
+            lastPosition = transform.position;
+	    }
 
-		public void Update()
-		{
-			if(paddleInput.LeftPressed)
-			{
-				movementFrame += transform.right * Time.deltaTime;
-			}
+	    private void FixedUpdate()
+	    {
+	        float angle = paddleInput.IsInverted ? -Angle.Value : Angle.Value;
+	        float distance = (Radius + Distance.Value);
 
-			if (paddleInput.RightPressed)
-			{
-				movementFrame -= transform.right * Time.deltaTime;
-			}
+            Vector3 position = new Vector3(
+	            Center.x + Mathf.Sin(angle * Mathf.Deg2Rad) * distance,
+	            transform.position.y,
+                Center.z + Mathf.Cos(angle * Mathf.Deg2Rad) * distance
+            );
 
-			if (paddleInput.ForwardsPressed)
-			{
-				movementFrame -= transform.forward * Time.deltaTime;
-			}
+	        transform.position = position;
 
-			if (paddleInput.BackwardsPressed)
-			{
-				movementFrame += transform.forward * Time.deltaTime;
-			}
+	        if (playingField != null)
+	        {
+	            Vector3 lookAt = playingField.CenterPosition.position;
+	            lookAt.y = transform.localScale.y / 2;
 
-			Debug.DrawLine(transform.position, transform.position + (Direction * 10));
-
-			lastPosition = transform.position;
-		}
-
-		public void FixedUpdate()
-		{
-			movementOffset += (movementFrame * MovementSpeed * 10.0f);
-		    movementFrame = Vector3.zero;
-
-			XRestriction.Value = movementOffset.x;
-			ZRestriction.Value = movementOffset.z;
-
-			movementOffset = new Vector3(
-				XRestriction.Value,
-				movementOffset.y,
-				ZRestriction.Value
-			);
-
-			transform.position = Vector3.Lerp(
-				transform.position,
-				centerPosition + movementOffset,
-				MovementSmoothness * Time.fixedDeltaTime
-			);
-		}
-
-		#endregion
+                transform.LookAt(lookAt);
+	        }
+	    }
 	}
 }

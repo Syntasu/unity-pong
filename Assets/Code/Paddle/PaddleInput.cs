@@ -32,7 +32,8 @@ namespace UnityPong
 		[SerializeField] private PaddleInputs LeftKey;
 		[SerializeField] private PaddleInputs RightKey;
 
-		private bool _isInverted;
+		
+		[SerializeField] private bool _isInverted;
 
 		public bool LeftPressed
 		{
