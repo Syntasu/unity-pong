@@ -88,7 +88,7 @@ namespace UnityPong
             );
 
 	        Vector3 lookAt = playingField.CenterTransform.position;
-	        lookAt.y = transform.localScale.y / 2;
+	        lookAt.y = transform.localScale.y;
 
 	        transform.position = position;
             transform.LookAt(lookAt);

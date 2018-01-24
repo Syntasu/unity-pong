@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace UnityPong
 {
@@ -27,10 +25,10 @@ namespace UnityPong
 	{
 		#region Data
 
-		[SerializeField] private PaddleInputs ForwardKey;
-		[SerializeField] private PaddleInputs BackwardsKey;
-		[SerializeField] private PaddleInputs LeftKey;
-		[SerializeField] private PaddleInputs RightKey;
+		[SerializeField] private PaddleInputs forwardKey = PaddleInputs.W;
+		[SerializeField] private PaddleInputs backwardsKey = PaddleInputs.S;
+		[SerializeField] private PaddleInputs leftKey = PaddleInputs.A;
+		[SerializeField] private PaddleInputs rightKey =PaddleInputs.D;
 
 		[SerializeField] private bool _isInverted;
 
@@ -39,8 +37,8 @@ namespace UnityPong
 			get
 			{
 				return !_isInverted ?
-					Input.GetKey((KeyCode)LeftKey) :
-					Input.GetKey((KeyCode)RightKey);
+					Input.GetKey((KeyCode)leftKey) :
+					Input.GetKey((KeyCode)rightKey);
 			}
 		}
 
@@ -49,8 +47,8 @@ namespace UnityPong
 			get
 			{
 				return !_isInverted ?
-					Input.GetKey((KeyCode)RightKey) :
-					Input.GetKey((KeyCode)LeftKey);
+					Input.GetKey((KeyCode)rightKey) :
+					Input.GetKey((KeyCode)leftKey);
 			}
 
 		}
@@ -60,8 +58,8 @@ namespace UnityPong
 			get
 			{
 				return !_isInverted ?
-					Input.GetKey((KeyCode)BackwardsKey) :
-					Input.GetKey((KeyCode)ForwardKey);
+					Input.GetKey((KeyCode)backwardsKey) :
+					Input.GetKey((KeyCode)forwardKey);
 			}
 		}
 
@@ -70,8 +68,8 @@ namespace UnityPong
 			get
 			{
 				return !_isInverted ?
-					Input.GetKey((KeyCode)ForwardKey) :
-					Input.GetKey((KeyCode)BackwardsKey);
+					Input.GetKey((KeyCode)forwardKey) :
+					Input.GetKey((KeyCode)backwardsKey);
 			}
 		}
 
@@ -90,8 +88,13 @@ namespace UnityPong
 
 		public void Awake()
 		{
+			PlayingField playingField = FindObjectOfType<PlayingField>();
+			Vector3 directionToCenter = (transform.position - playingField.Center).normalized;
+
+			print(directionToCenter);
+
 			//Detect which side the paddle is on, used for the correct key mapping.
-			_isInverted = transform.rotation.y > 0;
+			_isInverted = directionToCenter.x < 0;
 		}
 
 		#endregion
