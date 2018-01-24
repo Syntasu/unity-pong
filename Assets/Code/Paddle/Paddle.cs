@@ -5,8 +5,9 @@ namespace UnityPong
 	[RequireComponent(typeof(PaddleInput))]
 	public class Paddle : MonoBehaviour
 	{
-		public float MovementSpeed;
+		#region Data
 
+		public float MovementSpeed;
 	    public FloatRange DistanceRestriction;
 	    public FloatRange AngleRestriction;
 
@@ -20,7 +21,7 @@ namespace UnityPong
 	    private PaddleInput paddleInput;
 	    private Vector3 lastPosition;
 
-        public Vector3 Direction
+		public Vector3 Direction
         {
             get
             {
@@ -28,17 +29,24 @@ namespace UnityPong
             }
         }
 
-        private void Awake()
-	    {
-	        playingField = FindObjectOfType<PlayingField>();
-	        paddleInput = GetComponent<PaddleInput>();
+		#endregion
 
-            Distance.Min = radius + DistanceRestriction.Min;
-            Distance.Max = radius + DistanceRestriction.Max;
-            Distance.Value = radius;
-        }
+		#region Init
 
-        private void Update()
+		private void Awake()
+		{
+			playingField = FindObjectOfType<PlayingField>();
+			paddleInput = GetComponent<PaddleInput>();
+
+			Distance.Min = radius + DistanceRestriction.Min;
+			Distance.Max = radius + DistanceRestriction.Max;
+		}
+
+		#endregion
+
+		#region Logic 
+
+		private void Update()
 	    {
 			float angleMovement = (5.0f * MovementSpeed) * Time.deltaTime;
 			float distanceMovement = (3.0f * MovementSpeed) * Time.deltaTime;
@@ -73,8 +81,8 @@ namespace UnityPong
 	    private void FixedUpdate()
 	    {
 			
-	        float angle = paddleInput.IsInverted ? -this.Angle.Value : this.Angle.Value;
-	        float distance = (radius + this.Distance.Value);
+	        float angle = paddleInput.IsInverted ? -Angle.Value : Angle.Value;
+	        float distance = (radius + Distance.Value);
 
             Vector3 position = new Vector3(
 	            center.x + Mathf.Sin(angle * Mathf.Deg2Rad) * distance,
@@ -82,16 +90,13 @@ namespace UnityPong
                 center.z + Mathf.Cos(angle * Mathf.Deg2Rad) * distance
             );
 
+	        Vector3 lookAt = playingField.CenterPosition.position;
+	        lookAt.y = transform.localScale.y / 2;
+
 	        transform.position = position;
-
-			//TODO: Is this null check really needed (i.e. Awake should run before FixedUpdate).
-	        if (playingField != null)
-	        {
-	            Vector3 lookAt = playingField.CenterPosition.position;
-	            lookAt.y = transform.localScale.y / 2;
-
-                transform.LookAt(lookAt);
-	        }
+            transform.LookAt(lookAt);
 	    }
+
+		#endregion
 	}
 }
