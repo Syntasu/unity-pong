@@ -32,7 +32,6 @@ namespace UnityPong
 		[SerializeField] private PaddleInputs LeftKey;
 		[SerializeField] private PaddleInputs RightKey;
 
-		
 		[SerializeField] private bool _isInverted;
 
 		public bool LeftPressed
@@ -53,7 +52,7 @@ namespace UnityPong
 					Input.GetKey((KeyCode)RightKey) :
 					Input.GetKey((KeyCode)LeftKey);
 			}
-			
+
 		}
 
 		public bool BackwardsPressed
@@ -76,13 +75,14 @@ namespace UnityPong
 			}
 		}
 
-        public bool IsInverted
-	    {
-	        get
-	        {
-	            return _isInverted;
-	        }
-	    }
+		public bool IsInverted
+		{
+			get
+			{
+				return _isInverted;
+			}
+		}
+
 
 		#endregion
 
@@ -95,6 +95,5 @@ namespace UnityPong
 		}
 
 		#endregion
-
 	}
 }

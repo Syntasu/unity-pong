@@ -159,16 +159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1f31b8c4be5a244b984c2676464d19f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Angle:
-    Min: 0
-    Max: 180
-    Random: 0
-    value: 90
-  Distance:
-    Min: 0
-    Max: 30
-    Random: 0
-    value: 30
+  MovementSpeed: 12
   DistanceRestriction:
     Min: -5
     Max: 5
@@ -179,8 +170,16 @@ MonoBehaviour:
     Max: 135
     Random: 0
     value: 0
-  Center: {x: 0, y: 0, z: 0}
-  Radius: 30
+  Angle:
+    Min: 0
+    Max: 180
+    Random: 0
+    value: 90
+  Distance:
+    Min: 0
+    Max: 0
+    Random: 0
+    value: 0
 --- !u!23 &40956692
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -732,16 +731,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1f31b8c4be5a244b984c2676464d19f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Angle:
-    Min: 0
-    Max: 180
-    Random: 0
-    value: 90
-  Distance:
-    Min: 0
-    Max: 30
-    Random: 0
-    value: 30
+  MovementSpeed: 12
   DistanceRestriction:
     Min: -5
     Max: 5
@@ -752,8 +742,16 @@ MonoBehaviour:
     Max: 135
     Random: 0
     value: 0
-  Center: {x: 0, y: 0, z: 0}
-  Radius: 30
+  Angle:
+    Min: 0
+    Max: 180
+    Random: 0
+    value: 90
+  Distance:
+    Min: 0
+    Max: 0
+    Random: 0
+    value: 0
 --- !u!23 &1449309644
 MeshRenderer:
   m_ObjectHideFlags: 0
