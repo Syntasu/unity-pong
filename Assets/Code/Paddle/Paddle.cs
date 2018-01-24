@@ -14,9 +14,6 @@ namespace UnityPong
 		public FloatRange Angle;
 		public FloatRange Distance;
 
-		private Vector3 center;
-		private float radius = 30.0f;
-
 	    private PlayingField playingField;
 	    private PaddleInput paddleInput;
 	    private Vector3 lastPosition;
@@ -38,8 +35,8 @@ namespace UnityPong
 			playingField = FindObjectOfType<PlayingField>();
 			paddleInput = GetComponent<PaddleInput>();
 
-			Distance.Min = radius + DistanceRestriction.Min;
-			Distance.Max = radius + DistanceRestriction.Max;
+			Distance.Min = playingField.Radius + DistanceRestriction.Min;
+			Distance.Max = playingField.Radius + DistanceRestriction.Max;
 		}
 
 		#endregion
@@ -64,13 +61,13 @@ namespace UnityPong
 			}
 
 			if (paddleInput.ForwardsPressed &&
-				Distance.Value > radius + DistanceRestriction.Min)
+				Distance.Value > playingField.Radius + DistanceRestriction.Min)
 			{
 				Distance.Value -= distanceMovement;
 			}
 
 			if (paddleInput.BackwardsPressed &&
-				Distance.Value < radius + DistanceRestriction.Max)
+				Distance.Value < playingField.Radius + DistanceRestriction.Max)
 			{
 				Distance.Value += distanceMovement;
 			}
@@ -82,15 +79,15 @@ namespace UnityPong
 	    {
 			
 	        float angle = paddleInput.IsInverted ? -Angle.Value : Angle.Value;
-	        float distance = (radius + Distance.Value);
+	        float distance = (playingField.Radius + Distance.Value);
 
             Vector3 position = new Vector3(
-	            center.x + Mathf.Sin(angle * Mathf.Deg2Rad) * distance,
+	            playingField.Center.x + Mathf.Sin(angle * Mathf.Deg2Rad) * distance,
 	            transform.position.y,
-                center.z + Mathf.Cos(angle * Mathf.Deg2Rad) * distance
+                playingField.Center.z + Mathf.Cos(angle * Mathf.Deg2Rad) * distance
             );
 
-	        Vector3 lookAt = playingField.CenterPosition.position;
+	        Vector3 lookAt = playingField.CenterTransform.position;
 	        lookAt.y = transform.localScale.y / 2;
 
 	        transform.position = position;
