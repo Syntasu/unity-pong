@@ -91,8 +91,6 @@ namespace UnityPong
 			PlayingField playingField = FindObjectOfType<PlayingField>();
 			Vector3 directionToCenter = (transform.position - playingField.Center).normalized;
 
-			print(directionToCenter);
-
 			//Detect which side the paddle is on, used for the correct key mapping.
 			_isInverted = directionToCenter.x < 0;
 		}

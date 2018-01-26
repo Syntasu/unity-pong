@@ -28,9 +28,9 @@ namespace UnityPong
 
 		private void ResetBall()
 		{
-			ballBody.velocity = Vector3.zero;
+			ballBody.velocity = Random.onUnitSphere;
 
-			Vector3 dir = Random.onUnitSphere;
+			Vector3 dir = transform.forward;
 		
 			dir.y = 0.0f;
 
@@ -51,27 +51,31 @@ namespace UnityPong
 
 		private void OnCollisionEnter(Collision collision)
 		{
-			if(collision.contacts.Length > 0)
+			if (collision.contacts.Length > 0)
 			{
-				Vector3 bounceDir = Vector3.Reflect(direction, collision.contacts[0].normal);
+				Transform hitObj = collision.transform;
 
-				direction = Vector3.Reflect(direction, collision.contacts[0].normal);
+				Vector3 localPoint = hitObj.InverseTransformPoint(collision.contacts[0].point);
+				float sum = localPoint.x + localPoint.z;
+
+				Vector3 reflect = Vector3.Reflect(direction, collision.contacts[0].normal);
+				Vector3 right = hitObj.transform.right;
+
+				direction = (reflect + right * sum).normalized;
 				direction.y = 0.0f;
 
 				//TODO: Tagging system that does allow for auto-completed tags.
 				if (collision.collider.tag == "Player")
 				{
 					Paddle paddle = collision.gameObject.GetComponent<Paddle>();
-					bounceDir = (bounceDir + paddle.Direction) / 2;
+					direction = (direction + paddle.Direction) / 2;
 
 					float paddleBounceFactor = paddle.Direction.magnitude * BounceSpeedupFromPaddle;
 					velocity += BounceSpeedup * (0.5f + paddleBounceFactor);
 				}
-
-				direction = bounceDir.normalized;
-				direction.y = 0.0f;
 			}
 		}
+
 
 
 
